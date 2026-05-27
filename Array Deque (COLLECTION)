@@ -1,0 +1,40 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class BalanceoParentesis {
+
+    public static boolean estaBalanceado(String expr) {
+        Deque<Character> pila = new ArrayDeque<>();
+
+        for (char c : expr.toCharArray()) {
+            // Apertura → apilar
+            if (c == '(' || c == '[' || c == '{') {
+                pila.push(c);
+
+            // Cierre → verificar coincidencia
+            } else if (c == ')' || c == ']' || c == '}') {
+                if (pila.isEmpty()) return false;
+                char tope = pila.pop();
+                if (c == ')' && tope != '(') return false;
+                if (c == ']' && tope != '[') return false;
+                if (c == '}' && tope != '{') return false;
+            }
+        }
+        // Balanceado solo si la pila quedó vacía
+        return pila.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        String[] pruebas = {
+            "({[a + b] * (c - d)})",
+            "[(2 + 3) * {4 - 1}",
+            "((()))"
+        };
+
+        for (String expr : pruebas) {
+            String resultado = estaBalanceado(expr) ? "✓ Balanceado"
+                                                        : "✗ NO balanceado";
+            System.out.println(resultado + ": " + expr);
+        }
+    }
+}
