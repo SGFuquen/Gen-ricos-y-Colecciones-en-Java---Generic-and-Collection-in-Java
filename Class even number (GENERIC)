@@ -1,0 +1,35 @@
+public class Par {
+
+    private T primero;
+    private U segundo;
+
+    public Par(T primero, U segundo) {
+        this.primero = primero;
+        this.segundo = segundo;
+    }
+
+    public T getPrimero() { return primero; }
+    public U getSegundo() { return segundo; }
+
+    public void mostrar() {
+        System.out.println(
+            "Primero: " + primero + " | Segundo: " + segundo
+        );
+    }
+
+    public static void main(String[] args) {
+        Par<String, Integer> persona =
+            new Par<>("Ana", 28);
+        Par<String, Boolean> producto =
+            new Par<>("Laptop", true);
+        Par<Double, String> precio =
+            new Par<>(199.99, "USD");
+
+        persona.mostrar();
+        producto.mostrar();
+        precio.mostrar();
+
+        System.out.println("Nombre: " + persona.getPrimero());
+        System.out.println("Edad:   " + persona.getSegundo());
+    }
+}
