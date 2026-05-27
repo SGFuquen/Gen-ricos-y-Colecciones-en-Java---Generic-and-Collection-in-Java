@@ -1,0 +1,25 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class PalabrasUnicas {
+
+    public static void main(String[] args) {
+        String frase = "el sol sale y el sol brilla "
+                     + "el cielo es azul y el mar es azul";
+
+        String[] palabras = frase.split(" ");
+
+        Set<String> unicas = new HashSet<>();
+        for (String p : palabras) {
+            unicas.add(p.toLowerCase());
+        }
+
+        System.out.println("Frase original:");
+        System.out.println("  " + frase);
+        System.out.println("
+Total palabras:  " + palabras.length);
+        System.out.println("Palabras únicas: " + unicas.size());
+        System.out.println("
+Lista de únicas: " + unicas);
+    }
+}
