@@ -1,0 +1,33 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class ContadorPalabras {
+
+    public static void main(String[] args) {
+        String frase = "java es genial java es rapido "
+                     + "aprender java vale la pena la pena";
+
+        String[] palabras = frase.split(" ");
+
+        Map<String, Integer> conteo = new HashMap<>();
+
+        for (String p : palabras) {
+            // merge: si existe suma 1, si no inserta 1
+            conteo.merge(p, 1, Integer::sum);
+        }
+
+        System.out.println("=== FRECUENCIA DE PALABRAS ===");
+        conteo.forEach((palabra, veces) ->
+            System.out.printf("  %-10s → %d vez(ces)%n", palabra, veces)
+        );
+
+        System.out.println("
+Palabras distintas: " + conteo.size());
+
+        // Palabra más repetida
+        String masUsada = conteo.entrySet().stream()
+            .max(Map.Entry.comparingByValue())
+            .get().getKey();
+        System.out.println("Más repetida:      " + masUsada);
+    }
+}
