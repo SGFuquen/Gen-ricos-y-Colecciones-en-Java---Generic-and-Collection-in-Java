@@ -1,0 +1,45 @@
+import java.util.List;
+import java.util.Comparator;
+
+record Empleado(String nombre, String cargo, double salario) {}
+
+public class EstadisticasEmpleados {
+
+    public static void main(String[] args) {
+        List<Empleado> empleados = List.of(
+            new Empleado("Ana Torres",    "Desarrollador", 4_500_000),
+            new Empleado("Bruno Ríos",    "Diseñador",     3_800_000),
+            new Empleado("Carla Muñoz",   "Desarrollador", 5_200_000),
+            new Empleado("Diego Salcedo", "Gerente",       7_000_000),
+            new Empleado("Elena Vargas",  "Desarrollador", 4_800_000),
+            new Empleado("Felipe Mora",   "Diseñador",     3_600_000)
+        );
+
+        // 1. Contar desarrolladores
+        long devs = empleados.stream()
+            .filter(e -> e.cargo().equals("Desarrollador"))
+            .count();
+        System.out.println("Desarrolladores: " + devs);
+
+        // 2. Promedio salarial
+        double promedio = empleados.stream()
+            .mapToDouble(Empleado::salario)
+            .average()
+            .orElse(0);
+        System.out.printf("Promedio salarial: $%,.0f%n", promedio);
+
+        // 3. Empleado con mayor salario
+        empleados.stream()
+            .max(Comparator.comparingDouble(Empleado::salario))
+            .ifPresent(e -> System.out.println(
+                "Mayor salario:     " + e.nombre()
+                + " ($" + String.format("%,.0f", e.salario()) + ")"));
+
+        // 4. Nombres ordenados alfabéticamente
+        List<String> ordenados = empleados.stream()
+            .map(Empleado::nombre)
+            .sorted()
+            .toList();
+        System.out.println("Nombres ordenados: " + ordenados);
+    }
+}
