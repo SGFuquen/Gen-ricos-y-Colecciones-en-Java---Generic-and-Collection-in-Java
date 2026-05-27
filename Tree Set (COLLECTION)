@@ -1,0 +1,26 @@
+import java.util.TreeSet;
+
+public class RankingEstudiantes {
+
+    public static void main(String[] args) {
+        TreeSet<Double> notas = new TreeSet<>();
+
+        // Ocho notas, algunas repetidas
+        notas.add(3.5); notas.add(4.2); notas.add(2.8);
+        notas.add(4.8); notas.add(4.2); // duplicado → ignorado
+        notas.add(3.0); notas.add(4.8); // duplicado → ignorado
+        notas.add(1.5);
+
+        System.out.println("Notas ordenadas: " + notas);
+        System.out.println("Nota mínima:     " + notas.first());
+        System.out.println("Nota máxima:     " + notas.last());
+        System.out.println("Estudiantes únicos: " + notas.size());
+
+        System.out.println("
+Notas mayores a 4.0: "
+            + notas.tailSet(4.0, false));
+
+        System.out.println("Notas de 3.0 a 4.5: "
+            + notas.subSet(3.0, true, 4.5, true));
+    }
+}
