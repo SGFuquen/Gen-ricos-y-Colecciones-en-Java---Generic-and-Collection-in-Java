@@ -1,0 +1,19 @@
+public class SumaPares {
+
+    public static int sumarPares(int n) {
+        // Caso base: menor que 2 no hay pares
+        if (n < 2) return 0;
+
+        // Si n es impar, ignorarlo y bajar uno
+        if (n % 2 != 0) return sumarPares(n - 1);
+
+        // Caso recursivo: sumar n y continuar con n-2
+        return n + sumarPares(n - 2);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Suma pares hasta 10: " + sumarPares(10));
+        System.out.println("Suma pares hasta 7:  " + sumarPares(7));
+        System.out.println("Suma pares hasta 1:  " + sumarPares(1));
+    }
+}
