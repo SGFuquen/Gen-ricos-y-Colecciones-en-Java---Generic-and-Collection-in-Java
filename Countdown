@@ -1,0 +1,17 @@
+public class CuentaRegresiva {
+
+    public static void cuentaRegresiva(int n) {
+        // Caso base: llegamos a 0
+        if (n == 0) {
+            System.out.println("¡Despegue!");
+            return;
+        }
+        System.out.println(n);
+        // Caso recursivo: nos acercamos al caso base
+        cuentaRegresiva(n - 1);
+    }
+
+    public static void main(String[] args) {
+        cuentaRegresiva(5);
+    }
+}
