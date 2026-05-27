@@ -1,0 +1,22 @@
+public class ContarConsonantes {
+
+    private static final String VOCALES = "aeiouáéíóúü";
+
+    public static int contarConsonantes(String s) {
+        // Caso base: cadena vacía
+        if (s.isEmpty()) return 0;
+
+        char c = Character.toLowerCase(s.charAt(0));
+        boolean esLetra  = Character.isLetter(c);
+        boolean esVocal  = VOCALES.indexOf(c) >= 0;
+
+        int actual = (esLetra && !esVocal) ? 1 : 0;
+        return actual + contarConsonantes(s.substring(1));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(contarConsonantes("Java es genial"));
+        System.out.println(contarConsonantes("Hola mundo"));
+        System.out.println(contarConsonantes("aeiou"));
+    }
+}
